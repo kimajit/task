@@ -7,20 +7,14 @@ import (
 )
 
 func main() {
+	// Initialize Gin router
 	router := gin.Default()
 
-	// Setup database connection
-	db, err := setupDB()
-	if err != nil {
+	router.GET("/person/:person_id/info", GetPersonInfo)
+	router.POST("/person/create", CreatePerson)
+
+	// Run server
+	if err := router.Run(":8080"); err != nil {
 		log.Fatal(err)
 	}
-	defer db.Close()
-
-	// Define routes
-	router.GET("/person/:id", func(c *gin.Context) {
-		getPersonDetails(c, db)
-	})
-
-	// Start the server
-	router.Run(":8080")
 }
