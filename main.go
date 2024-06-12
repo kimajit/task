@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	// Initialize Gin router
+
 	router := gin.Default()
 
 	router.GET("/person/:person_id/info", GetPersonInfo)
